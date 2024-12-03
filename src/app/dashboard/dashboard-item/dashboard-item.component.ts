@@ -6,6 +6,10 @@ import { Component, input, Input } from '@angular/core';
   imports: [],
   templateUrl: './dashboard-item.component.html',
   styleUrl: './dashboard-item.component.css'
+  //not all cases that using host is reccommended so it be better to apply it on the css  or template 
+  // host: {
+  //   class: 'dashboard-item'
+  // } 
 })
 export class DashboardItemComponent {
    //reusable input 
