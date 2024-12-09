@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChild, ContentChildren, ElementRef, inject, input, viewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -9,9 +9,19 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   encapsulation:ViewEncapsulation.None, //disable the scoping style encapsulation
   //another way to add attribute selector to style component
   host: {
-    class: 'control'
+    class: 'control',
+    '(click)': 'onClick()',
   }
 })
 export class ControlComponent {
    label = input.required<string>();
+   private el = inject(ElementRef);
+   //@ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+   
+   private control = viewChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+   onClick(){
+    console.log('Click me');
+    console.log(this.el);
+    console.log(this.control())
+   }
 }
