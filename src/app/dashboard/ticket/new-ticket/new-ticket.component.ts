@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent {
 
+   //two way binding instead of template variable binding
+   enteredTitle = '';
+   enteredText = '';
+
   //@ViewChild('form') form?: ElementRef<HTMLFormElement>
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form'); //another way of using viewchild
   private el = inject(ElementRef);
@@ -34,10 +38,18 @@ export class NewTicketComponent {
 
   }
   
-  onSubmit(titleInput: string, ticketText:string){
-    this.add.emit({title:titleInput, text:ticketText })
-    //this.form?.nativeElement.reset();
-    this.form().nativeElement.reset();
+  // onSubmit(titleInput: string, ticketText:string){
+  //   this.add.emit({title:titleInput, text:ticketText })
+  //   //this.form?.nativeElement.reset();
+  //   this.form().nativeElement.reset();
 
+  // }
+
+  onSubmit(){
+    this.add.emit({title:this.enteredTitle, text:this.enteredText })
+    //this.form().nativeElement.reset();
+    this.enteredTitle = '';
+    this.enteredText = '';
+ 
   }
 }

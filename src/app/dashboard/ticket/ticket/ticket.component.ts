@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, Input, input, output, signal } from '@angular/core';
 import { NewTicketComponent } from "../new-ticket/new-ticket.component";
 import { Ticket } from '../ticker.model';
 
@@ -10,8 +10,13 @@ import { Ticket } from '../ticker.model';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
+  //@Input({})
+  //ticket = input.required<Ticket>({alias: 'data'});
   data = input.required<Ticket>();
+
+  //close = output('closeTicket');
   close = output();
+
   detailsVisible = signal(false);
 
   onToggleDetails() {
